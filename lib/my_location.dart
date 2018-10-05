@@ -51,22 +51,13 @@ class _GoogleMaps extends State<GoogleMaps> {
   void initState() {
     locations.add(LocationMap(
         id: 1,
-        name: 'Sydney Opera House',
-        address1: 'Bennelong Point',
-        address2: 'Sydney NSW 2000, Australia',
-        lat: '-33.856159',
-        long: '151.215256',
+        name: '中小企業大学校',
+        address1: 'アドレス①',
+        address2: 'アドレス②',
+        lat: '33.733267',
+        long: '130.7741436',
         imageUrl:
             'https://www.planetware.com/photos-large/AUS/australia-sydney-opera-house-2.jpg'));
-    locations.add(LocationMap(
-        id: 2,
-        name: 'Sydney Harbour Bridge',
-        address1: '',
-        address2: 'Sydney NSW, Australia',
-        lat: '-33.857013',
-        long: '151.207694',
-        imageUrl:
-            'https://www.planetware.com/photos-large/AUS/australia-sydney-harbour-bridge.jpg'));
     super.initState();
   }
 
