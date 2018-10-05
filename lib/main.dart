@@ -156,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 minWidth: 100.0,
                 height: 30.0,
                 onPressed: _launchNavigationInGoogleMaps,
-                child: Text('GoogleMapを開く', style: TextStyle(color: Colors.black),
+                child: Text('GoogleMapを開く', style: TextStyle(color: Colors.black)),
               ),
             ),
           )
