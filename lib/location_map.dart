@@ -1,4 +1,4 @@
-class Location {
+class LocationMap {
   int id;
   String name;
   String lat;
@@ -10,7 +10,7 @@ class Location {
   String zip;
   String phone;
   String imageUrl;
-  Location(
+  LocationMap(
       {this.id,
       this.name,
       this.lat,

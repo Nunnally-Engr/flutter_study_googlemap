@@ -4,6 +4,7 @@ import 'package:location/location.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_study_googlemap/my_location.dart';
+import 'package:android_intent/android_intent.dart';
 
 void main() {
   GoogleMapController.init();
@@ -41,6 +42,7 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => new _MyHomePageState();
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -71,6 +73,26 @@ class _MyHomePageState extends State<MyHomePage> {
     } on PlatformException {
       _currentLocation = null;
     }
+  }
+
+  void _launchNavigationInGoogleMaps() async {
+
+    try {
+      _currentLocation = await location.getLocation();
+
+      var query = _currentLocation["latitude"] + ',' + _currentLocation["longitude"];
+      if (Theme.of(context).platform == TargetPlatform.android) {
+        final AndroidIntent intent = new AndroidIntent(
+            action: 'action_view',
+            data:
+                "https://www.google.com/maps/search/?api=1&query=" + query.toString(),
+            package: 'com.google.android.apps.maps');
+        intent.launch();
+      }
+    } on PlatformException {
+      _currentLocation = null;
+    }
+
   }
 
   // user defined function
@@ -111,19 +133,36 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 16.0),
             child: Material(
-              borderRadius: BorderRadius.circular(30.0),
+              color: Colors.lightBlueAccent.shade100,
+              borderRadius: BorderRadius.circular(10.0),
               shadowColor: Colors.lightBlueAccent.shade100,
               elevation: 5.0,
               child: MaterialButton(
-                minWidth: 200.0,
+                minWidth: 100.0,
                 height: 42.0,
                 onPressed: _getMyLocation,
-                color: Colors.lightBlueAccent,
-                child: Text('現在地取得', style: TextStyle(color: Colors.white)),
+                child: Text('現在地取得', style: TextStyle(color: Colors.black)),
               ),
             ),
           ),
-        ]),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            child: Material(
+              color: Colors.lightBlueAccent.shade100,
+              borderRadius: BorderRadius.circular(10.0),
+              shadowColor: Colors.lightBlueAccent.shade100,
+              elevation: 5.0,
+              child: MaterialButton(
+                minWidth: 100.0,
+                height: 30.0,
+                onPressed: _launchNavigationInGoogleMaps,
+                child: Text('GoogleMapを開く', style: TextStyle(color: Colors.black),
+              ),
+            ),
+          )
+        ],
+        
+        ),
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
