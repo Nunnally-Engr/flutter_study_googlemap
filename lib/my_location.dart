@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_study_googlemap/location.dart';
+import 'package:flutter_study_googlemap/location_map.dart';
 
 class Mylocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(title: const Text("私の現在地")),
+      appBar: AppBar(title: const Text("現在地アプリ内表示")),
       body: GoogleMaps(),
     );
   }
 }
+
 class GoogleMaps extends StatefulWidget {
   GoogleMaps({Key key}) : super(key: key);
 
@@ -23,7 +24,7 @@ class _GoogleMaps extends State<GoogleMaps> {
   GoogleMapOptions _options;
   bool _isMoving;
   GoogleMapOverlayController mapOverlayController;
-  List<Location> locations = List<Location>();
+  List<LocationMap> locations = List<LocationMap>();
 
   @override
   void didUpdateWidget(GoogleMaps oldWidget) {
@@ -48,7 +49,7 @@ class _GoogleMaps extends State<GoogleMaps> {
 
   @override
   void initState() {
-    locations.add(Location(
+    locations.add(LocationMap(
         id: 1,
         name: 'Sydney Opera House',
         address1: 'Bennelong Point',
@@ -57,7 +58,7 @@ class _GoogleMaps extends State<GoogleMaps> {
         long: '151.215256',
         imageUrl:
             'https://www.planetware.com/photos-large/AUS/australia-sydney-opera-house-2.jpg'));
-    locations.add(Location(
+    locations.add(LocationMap(
         id: 2,
         name: 'Sydney Harbour Bridge',
         address1: '',
@@ -111,14 +112,6 @@ class _GoogleMaps extends State<GoogleMaps> {
               InfoWindowText(loc.name, loc.address1 + ', ' + loc.address2)));
     });
 
-    // mapOverlayController.mapController.onInfoWindowTapped.add((Marker marker) {
-    //   mapOverlayController.overlayController.deactivateOverlay();
-    //   var index = marker.options.zIndex.toInt() - 1;
-    //   Navigator.of(context).push(MaterialPageRoute(
-    //       builder: (BuildContext context) =>
-    //           VenueDetails(locations[index], _notifyPop)));
-    // });
-
     mapOverlayController.overlayController.activateOverlay();
     setState(() {});
   }
@@ -159,7 +152,4 @@ class _GoogleMaps extends State<GoogleMaps> {
     return renderMap();
   }
 
-  void _notifyPop(bool success) {
-    mapOverlayController.overlayController.activateOverlay();
-  }
 }

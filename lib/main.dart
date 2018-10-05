@@ -80,7 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       _currentLocation = await location.getLocation();
 
-      var query = _currentLocation["latitude"] + ',' + _currentLocation["longitude"];
+      var query = "${_currentLocation["latitude"]},${_currentLocation["longitude"]}";
+
       if (Theme.of(context).platform == TargetPlatform.android) {
         final AndroidIntent intent = new AndroidIntent(
             action: 'action_view',
@@ -103,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Alert Dialog title"),
+          title: new Text("現在地情報"),
           content: new Text(_currentLocation.toString()),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
