@@ -17,6 +17,12 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="flutter_study_googlemap"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- API KEY -->
+        <meta-data 
+          android:name="com.google.android.geo.API_KEY"
+          android:value="[YOUR API KEY]"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -29,8 +35,8 @@
                  there is no splash screen (such as the default splash screen
                  defined in @style/LaunchTheme). -->
             <meta-data
-                android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
-                android:value="true" />
+              android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
+              android:value="true" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

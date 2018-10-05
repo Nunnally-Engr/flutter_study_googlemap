@@ -3,6 +3,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
 
+import 'package:flutter_study_googlemap/my_location.dart';
+
 void main() {
   GoogleMapController.init();
   runApp(new MyApp());
@@ -117,16 +119,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 42.0,
                 onPressed: _getMyLocation,
                 color: Colors.lightBlueAccent,
-                child: Text('Venues', style: TextStyle(color: Colors.white)),
+                child: Text('現在地取得', style: TextStyle(color: Colors.white)),
               ),
             ),
           ),
         ]),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute<void>(
+              builder: (context) => Mylocation()));
+        },
+        child: new Icon(Icons.my_location),
       ),
     );
   }
